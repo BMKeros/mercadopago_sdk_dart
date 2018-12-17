@@ -1,0 +1,8 @@
+name: mercadopago_sdk
+description: SDK MercadoPago Dart
+author: Israel Lugo <hostelixisrael@gmail.com>
+homepage: https://github.com/bmkeros/mercadopago_sdk_dart
+version: 1.0.0
+
+environment:
+  sdk: ">=2.0.0 <3.0.0"

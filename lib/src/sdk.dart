@@ -12,7 +12,7 @@ class MP {
   }
 
   Future<String> getAccessToken() async {
-    if (!this._access_token.isEmpty) {
+    if (this._access_token != null && !this._access_token.isEmpty) {
       return this._access_token;
     }
 

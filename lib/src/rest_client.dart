@@ -1,48 +1,77 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+import 'version.dart';
 
 class MPRestClient {
-  final String _API_BASE_URL = 'api.mercadopago.com';
-  final String _USER_AGENT = 'MercadoPago Dart SDK ';
-  final String _MIME_JSON = 'application/json';
-  String _version;
+  final String BASE_URL = 'api.mercadopago.com';
+  final String MIME_JSON = 'application/json';
+  final String MIME_FORM = 'application/x-www-form-urlencoded';
 
-  MPRestClient({version}) {
-    this._version = version;
-  }
+  MPRestClient();
 
-  String get _makeAgent => _USER_AGENT + _version;
+  String get _makeAgent => 'MercadoPago Dart SDK v${SDK_VERSION}';
 
   String _makeURL(uri, [Map<String, String> params]) {
-    return Uri.https(_API_BASE_URL, uri, params).toString();
+    return Uri.https(BASE_URL, uri, params).toString();
   }
 
-  Map<String, String> _makeHeaders() {
+  Map<String, String> _makeHeaders({Map<String, String> extraHeaders}) {
     return {
       'User-Agent': this._makeAgent,
-      'Accept': this._MIME_JSON,
-      'Content-type': this._MIME_JSON,
+      'Accept': this.MIME_JSON,
+    }
+      ..addAll(extraHeaders);
+  }
+
+  Future<Map<String, dynamic>> get(uri, [Map<String, String> params]) async {
+    var response = await http.get(this._makeURL(uri, params),
+        headers: this._makeHeaders());
+
+    return {
+      'status': response.statusCode,
+      'response': json.decode(response.body),
     };
   }
 
-  Future<http.Response> get(uri, [Map<String, String> params]) {
-    return http.get(this._makeURL(uri, params), headers: this._makeHeaders());
+  Future<Map<String, dynamic>> post(uri,
+      {Map<String, String> data,
+        Map<String, String> params,
+        String contentType}) async {
+    var response = await http.post(this._makeURL(uri, params),
+        headers: this._makeHeaders(
+            extraHeaders: {'Content-type': contentType ?? this.MIME_JSON}),
+        body: data);
+
+    return {
+      'status': response.statusCode,
+      'response': json.decode(response.body),
+    };
   }
 
-  Future<http.Response> post(uri,
-      {Map<String, String> data, Map<String, String> params}) {
-    return http.post(this._makeURL(uri, params),
-        headers: this._makeHeaders(), body: data);
+  Future<Map<String, dynamic>> put(uri,
+      {Map<String, String> data,
+        Map<String, String> params,
+        String contentType}) async {
+    var response = await http.put(this._makeURL(uri, params),
+        headers: this._makeHeaders(
+            extraHeaders: {'Content-type': contentType ?? this.MIME_JSON}),
+        body: data);
+
+    return {
+      'status': response.statusCode,
+      'response': json.decode(response.body),
+    };
   }
 
-  Future<http.Response> put(uri,
-      {Map<String, String> data, Map<String, String> params}) {
-    return http.put(this._makeURL(uri, params),
-        headers: this._makeHeaders(), body: data);
-  }
-
-  Future<http.Response> delete(uri,
-      {Map<String, String> data, Map<String, String> params}) {
-    return http.delete(this._makeURL(uri, params),
+  Future<Map<String, dynamic>> delete(uri,
+      {Map<String, String> data, Map<String, String> params}) async {
+    var response = await http.delete(this._makeURL(uri, params),
         headers: this._makeHeaders());
+
+    return {
+      'status': response.statusCode,
+      'response': json.decode(response.body),
+    };
   }
 }

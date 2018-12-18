@@ -31,4 +31,11 @@ class MP {
     }
     return null;
   }
+
+  Future<Map<String, dynamic>> createPreference(
+      Map<String, dynamic> preference) async {
+    final String access_token = await this.getAccessToken();
+    return await this._restClient.post('/checkout/preferences',
+        params: {'access_token': access_token}, data: preference);
+  }
 }

@@ -5,9 +5,15 @@ void main() {
   String CLIENT_ID = '';
   String CLIENT_SECRET = '';
 
-  test('Testing createPreference()', () async {
-    var mp = MP(CLIENT_ID, CLIENT_SECRET);
+  var mp = MP(CLIENT_ID, CLIENT_SECRET);
 
+  test('Testing getAccessToken()', () async {
+    var token = await mp.getAccessToken();
+
+    expect(token, isNot(equals(null)));
+  });
+
+  test('Testing createPreference()', () async {
     var response = await mp.createPreference({
       "items": [
         {

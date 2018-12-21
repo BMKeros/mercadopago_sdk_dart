@@ -97,7 +97,7 @@ Update an existent Checkout preference
 ## Get payment data
 
     Future<Map<String, dynamic>> index() async {
-        paymentInfo = mp.getPayment("PID");
+        paymentInfo = await mp.getPayment("PID");
 
         return paymentInfo;
     }
@@ -114,7 +114,7 @@ Update an existent Checkout preference
 ## Refund (only for accredited payments)
 
     Future<Map<String, dynamic>> index() async {
-        var result = mp.refundPayment("PID");
+        var result = await mp.refundPayment("PID");
 
         // Show result
         return result;

@@ -23,7 +23,8 @@ Configure your credentials
 ---
 
     import 'package:mercadopago_sdk/mercadopago_sdk.dart';
-    mp = MP("CLIENT_ID", "CLIENT_SECRET");
+
+    var mp = MP("CLIENT_ID", "CLIENT_SECRET");
 
 ## Preferences
 

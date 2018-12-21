@@ -12,27 +12,24 @@ To use this plugin, add `mercadopago_sdk` as a [dependency in your pubspec.yaml 
 
 Configure your credentials
 
-```
-
 - Get your **CLIENT_ID** and **CLIENT_SECRET** in the following address:
-    - Argentina: `https://www.mercadopago.com/mla/herramientas/aplicaciones <https://www.mercadopago.com/mla/herramientas/aplicaciones>`_
-    - Brazil: `https://www.mercadopago.com/mlb/ferramentas/aplicacoes <https://www.mercadopago.com/mlb/ferramentas/aplicacoes>`_
-    - México: `https://www.mercadopago.com/mlm/herramientas/aplicaciones <https://www.mercadopago.com/mlm/herramientas/aplicaciones>`_
-    - Venezuela: `https://www.mercadopago.com/mlv/herramientas/aplicaciones <https://www.mercadopago.com/mlv/herramientas/aplicaciones>`_
-    - Colombia: `https://www.mercadopago.com/mco/herramientas/aplicaciones <https://www.mercadopago.com/mco/herramientas/aplicaciones>`_
-    - Chile: `https://www.mercadopago.com/mlc/herramientas/aplicaciones <https://www.mercadopago.com/mlc/herramientas/aplicaciones>`_
+  - Argentina: `https://www.mercadopago.com/mla/herramientas/aplicaciones <https://www.mercadopago.com/mla/herramientas/aplicaciones>`\_
+  - Brazil: `https://www.mercadopago.com/mlb/ferramentas/aplicacoes <https://www.mercadopago.com/mlb/ferramentas/aplicacoes>`\_
+  - México: `https://www.mercadopago.com/mlm/herramientas/aplicaciones <https://www.mercadopago.com/mlm/herramientas/aplicaciones>`\_
+  - Venezuela: `https://www.mercadopago.com/mlv/herramientas/aplicaciones <https://www.mercadopago.com/mlv/herramientas/aplicaciones>`\_
+  - Colombia: `https://www.mercadopago.com/mco/herramientas/aplicaciones <https://www.mercadopago.com/mco/herramientas/aplicaciones>`\_
+  - Chile: `https://www.mercadopago.com/mlc/herramientas/aplicaciones <https://www.mercadopago.com/mlc/herramientas/aplicaciones>`\_
 
 ::
 
     import 'package:mercadopago_sdk/mercadopago_sdk.dart';
     mp = MP("CLIENT_ID", "CLIENT_SECRET");
 
-
-Preferences
-~~~~~~~~~~~
+## Preferences
 
 Get an existent Checkout preference
-***********************************
+
+---
 
 ::
 
@@ -43,7 +40,8 @@ Get an existent Checkout preference
     }
 
 Create a Checkout preference
-****************************
+
+---
 
 ::
 
@@ -65,7 +63,8 @@ Create a Checkout preference
     }
 
 Update an existent Checkout preference
-**************************************
+
+---
 
 ::
 
@@ -86,11 +85,9 @@ Update an existent Checkout preference
         return result;
     }
 
-Payments/Collections
-~~~~~~~~~~~~~~~~~~~~
+## Payments/Collections
 
-Search for payments
-*******************
+## Search for payments
 
 ::
 
@@ -105,8 +102,7 @@ Search for payments
         return searchResult;
     }
 
-Get payment data
-****************
+## Get payment data
 
 ::
 
@@ -116,8 +112,7 @@ Get payment data
         return paymentInfo;
     }
 
-Cancel (only for pending payments)
-**********************************
+## Cancel (only for pending payments)
 
 ::
 
@@ -128,9 +123,7 @@ Cancel (only for pending payments)
         return result;
     }
 
-
-Refund (only for accredited payments)
-*************************************
+## Refund (only for accredited payments)
 
 ::
 
@@ -141,12 +134,9 @@ Refund (only for accredited payments)
         return result;
     }
 
-Customized checkout
--------------------
+## Customized checkout
 
-
-Configure your credentials
-```
+## Configure your credentials
 
 - Get your **ACCESS_TOKEN** in the following address:
   - Argentina: `https://www.mercadopago.com/mla/account/credentials <https://www.mercadopago.com/mla/account/credentials>`\_
@@ -161,38 +151,34 @@ Configure your credentials
 
     var mp = MP("ACCESS_TOKEN");
 
-Create payment
-
-```
+## Create payment
 
 ::
 
     mp.post("/v1/payments", data);
 
-Create customer
-```
+## Create customer
 
 ::
 
     mp.post("/v1/customers", {"email": "email@test.com"});
 
-Get customer
-
-```
+## Get customer
 
 ::
 
     mp.get("/v1/customers/CUSTOMER_ID");
 
-* View more Custom checkout related APIs in Developers Site
-    * Argentina: `https://www.mercadopago.com.ar/developers <https://www.mercadopago.com.ar/developers>`_
-    * Brazil: `https://www.mercadopago.com.br/developers <https://www.mercadopago.com.br/developers>`_
-    * Mexico: `https://www.mercadopago.com.mx/developers <https://www.mercadopago.com.mx/developers>`_
-    * Venezuela: `https://www.mercadopago.com.ve/developers <https://www.mercadopago.com.ve/developers>`_
-    * Colombia: `https://www.mercadopago.com.co/developers <https://www.mercadopago.com.co/developers>`_
+- View more Custom checkout related APIs in Developers Site
+  - Argentina: `https://www.mercadopago.com.ar/developers <https://www.mercadopago.com.ar/developers>`\_
+  - Brazil: `https://www.mercadopago.com.br/developers <https://www.mercadopago.com.br/developers>`\_
+  - Mexico: `https://www.mercadopago.com.mx/developers <https://www.mercadopago.com.mx/developers>`\_
+  - Venezuela: `https://www.mercadopago.com.ve/developers <https://www.mercadopago.com.ve/developers>`\_
+  - Colombia: `https://www.mercadopago.com.co/developers <https://www.mercadopago.com.co/developers>`\_
 
-Generic methods
----------------
+## Generic methods
+
+---
 
 You can access any other resource from the MercadoPago API using the generic methods:
 
@@ -217,4 +203,3 @@ For example, if you want to get the Sites list (no params and no authentication)
     var result = mp.get("/sites");
 
     print(result);
-```

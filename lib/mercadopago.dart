@@ -1,4 +1,4 @@
-library mercadopago_sdk;
+library mercadopago;
 
 export 'src/version.dart';
 export 'src/rest_client.dart';

@@ -1,3 +1,2 @@
-# mercadopago_sdk_dart
+# MercadoPago Dart SDK
 
-SDK MercadoPago Dart

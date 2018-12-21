@@ -62,8 +62,10 @@ class MP {
       {int offset: 0, int limit: 0}) async {
     final String access_token = await this.getAccessToken();
 
-    filters..addAll({'access_token': access_token})..addAll(
-        {'offset': offset})..addAll({'limit': limit});
+    filters
+      ..addAll({'access_token': access_token})
+      ..addAll({'offset': offset})
+      ..addAll({'limit': limit});
 
     return await this._restClient.get('/v1/payments/search', filters);
   }
@@ -75,8 +77,8 @@ class MP {
         params: {'access_token': access_token}, data: preference);
   }
 
-  Future<Map<String, dynamic>> updatePreference(String id,
-      Map<String, dynamic> preference) async {
+  Future<Map<String, dynamic>> updatePreference(
+      String id, Map<String, dynamic> preference) async {
     final String access_token = await this.getAccessToken();
     return await this._restClient.put('/checkout/preferences/${id}',
         params: {'access_token': access_token}, data: preference);
@@ -103,8 +105,8 @@ class MP {
         .get('/preapproval/${id}', {'access_token': access_token});
   }
 
-  Future<Map<String, dynamic>> updatePreapprovalPayment(String id,
-      Map<String, dynamic> payment) async {
+  Future<Map<String, dynamic>> updatePreapprovalPayment(
+      String id, Map<String, dynamic> payment) async {
     final String access_token = await this.getAccessToken();
     return await this._restClient.put('/preapproval/${id}',
         params: {'access_token': access_token}, data: payment);

@@ -22,11 +22,11 @@ class MPRestClient {
     return {
       'User-Agent': this._makeAgent,
       'Accept': this.MIME_JSON,
-    }
-      ..addAll(extraHeaders);
+    }..addAll(extraHeaders);
   }
 
-  Future<Map<String, dynamic>> get(uri, [
+  Future<Map<String, dynamic>> get(
+    uri, [
     Map<String, String> params,
   ]) async {
     var response = await http.get(this._makeURL(uri, params),
@@ -38,7 +38,8 @@ class MPRestClient {
     };
   }
 
-  Future<Map<String, dynamic>> post(uri, {
+  Future<Map<String, dynamic>> post(
+    uri, {
     Map<String, dynamic> data,
     Map<String, String> params,
     String contentType,
@@ -54,7 +55,8 @@ class MPRestClient {
     };
   }
 
-  Future<Map<String, dynamic>> put(uri, {
+  Future<Map<String, dynamic>> put(
+    uri, {
     Map<String, dynamic> data,
     Map<String, String> params,
     String contentType,
@@ -70,7 +72,8 @@ class MPRestClient {
     };
   }
 
-  Future<Map<String, dynamic>> delete(uri, {
+  Future<Map<String, dynamic>> delete(
+    uri, {
     Map<String, String> params,
   }) async {
     var response = await http.delete(this._makeURL(uri, params),

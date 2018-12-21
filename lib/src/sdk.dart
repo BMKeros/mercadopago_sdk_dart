@@ -143,4 +143,53 @@ class MP {
     return await this._restClient.put('/preapproval/${id}',
         params: {'access_token': access_token}, data: {"status": "cancelled"});
   }
+
+  /// Generic resource get
+  /// Future<Map<String, dynamic>>
+  Future<Map<String, dynamic>> get(
+    uri, {
+    Map<String, String> params,
+    bool authenticate: true,
+  }) async {
+    if (authenticate) {
+      String token = await this.getAccessToken();
+      params..addAll({'access_token': token});
+    }
+    return this._restClient.get(uri, params);
+  }
+
+  /// Generic resource post
+  /// Future<Map<String, dynamic>>
+  Future<Map<String, dynamic>> post(
+    uri, {
+    Map<String, dynamic> data,
+    Map<String, String> params,
+  }) async {
+    String token = await this.getAccessToken();
+    params..addAll({'access_token': token});
+    return this._restClient.post(uri, data: data, params: params);
+  }
+
+  /// Generic resource put
+  /// Future<Map<String, dynamic>>
+  Future<Map<String, dynamic>> put(
+    uri, {
+    Map<String, dynamic> data,
+    Map<String, String> params,
+  }) async {
+    String token = await this.getAccessToken();
+    params..addAll({'access_token': token});
+    return this._restClient.put(uri, data: data, params: params);
+  }
+
+  /// Generic resource delete
+  /// Future<Map<String, dynamic>>
+  Future<Map<String, dynamic>> delete(
+    uri, {
+    Map<String, String> params,
+  }) async {
+    String token = await this.getAccessToken();
+    params..addAll({'access_token': token});
+    return this._restClient.delete(uri, params: params);
+  }
 }

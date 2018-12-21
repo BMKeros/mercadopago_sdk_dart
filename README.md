@@ -20,6 +20,7 @@ Configure your credentials
   - Colombia: `https://www.mercadopago.com/mco/herramientas/aplicaciones <https://www.mercadopago.com/mco/herramientas/aplicaciones>`\_
   - Chile: `https://www.mercadopago.com/mlc/herramientas/aplicaciones <https://www.mercadopago.com/mlc/herramientas/aplicaciones>`\_
 
+---
 
     import 'package:mercadopago_sdk/mercadopago_sdk.dart';
     mp = MP("CLIENT_ID", "CLIENT_SECRET");

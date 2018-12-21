@@ -1,4 +1,4 @@
-name: mercadopago
+name: mercadopago_sdk
 description: MercadoPago Dart SDK
 author: Israel Lugo <hostelixisrael@gmail.com>
 homepage: https://github.com/bmkeros/mercadopago_sdk_dart

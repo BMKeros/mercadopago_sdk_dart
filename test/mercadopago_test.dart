@@ -1,5 +1,5 @@
 import "package:test/test.dart";
-import 'package:mercadopago/mercadopago.dart';
+import 'package:mercadopago_sdk/mercadopago.dart';
 
 void main() {
   String CLIENT_ID = '';

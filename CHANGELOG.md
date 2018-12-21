@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Add Generic methods GET, POST, PUT, DELETE
+
 ## 1.0.1
 
 - Apply dartfmt to files

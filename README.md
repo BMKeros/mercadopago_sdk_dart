@@ -131,6 +131,7 @@ Update an existent Checkout preference
   - Venezuela: `https://www.mercadopago.com/mlv/account/credentials <https://www.mercadopago.com/mlv/account/credentials>`\_
   - Colombia: `https://www.mercadopago.com/mco/account/credentials <https://www.mercadopago.com/mco/account/credentials>`\_
 
+---
 
     import 'package:mercadopago_sdk/mercadopago_sdk.dart';
 

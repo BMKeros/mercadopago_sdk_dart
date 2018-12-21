@@ -20,7 +20,6 @@ Configure your credentials
   - Colombia: `https://www.mercadopago.com/mco/herramientas/aplicaciones <https://www.mercadopago.com/mco/herramientas/aplicaciones>`\_
   - Chile: `https://www.mercadopago.com/mlc/herramientas/aplicaciones <https://www.mercadopago.com/mlc/herramientas/aplicaciones>`\_
 
-::
 
     import 'package:mercadopago_sdk/mercadopago_sdk.dart';
     mp = MP("CLIENT_ID", "CLIENT_SECRET");
@@ -31,8 +30,6 @@ Get an existent Checkout preference
 
 ---
 
-::
-
     Future<Map<String, dynamic>> index() async {
         result = await mp.getPreference("PREFERENCE_ID");
 
@@ -42,8 +39,6 @@ Get an existent Checkout preference
 Create a Checkout preference
 
 ---
-
-::
 
     Future<Map<String, dynamic>> index() async {
         var preference = {
@@ -66,8 +61,6 @@ Update an existent Checkout preference
 
 ---
 
-::
-
     Future<Map<String, dynamic>> index() async {
         var preference = {
             "items": [
@@ -89,8 +82,6 @@ Update an existent Checkout preference
 
 ## Search for payments
 
-::
-
     Future<Map<String, dynamic>> index() async {
         var filters = {
             "id": None,
@@ -104,8 +95,6 @@ Update an existent Checkout preference
 
 ## Get payment data
 
-::
-
     Future<Map<String, dynamic>> index() async {
         paymentInfo = mp.getPayment("PID");
 
@@ -113,8 +102,6 @@ Update an existent Checkout preference
     }
 
 ## Cancel (only for pending payments)
-
-::
 
     Future<Map<String, dynamic>> index() async {
         var result = mp.cancelPayment("PID");
@@ -124,8 +111,6 @@ Update an existent Checkout preference
     }
 
 ## Refund (only for accredited payments)
-
-::
 
     Future<Map<String, dynamic>> index() async {
         var result = mp.refundPayment("PID");
@@ -145,7 +130,6 @@ Update an existent Checkout preference
   - Venezuela: `https://www.mercadopago.com/mlv/account/credentials <https://www.mercadopago.com/mlv/account/credentials>`\_
   - Colombia: `https://www.mercadopago.com/mco/account/credentials <https://www.mercadopago.com/mco/account/credentials>`\_
 
-::
 
     import 'package:mercadopago_sdk/mercadopago_sdk.dart';
 
@@ -153,19 +137,13 @@ Update an existent Checkout preference
 
 ## Create payment
 
-::
-
     mp.post("/v1/payments", data);
 
 ## Create customer
 
-::
-
     mp.post("/v1/customers", {"email": "email@test.com"});
 
 ## Get customer
-
-::
 
     mp.get("/v1/customers/CUSTOMER_ID");
 
@@ -182,8 +160,6 @@ Update an existent Checkout preference
 
 You can access any other resource from the MercadoPago API using the generic methods:
 
-::
-
     // Get a resource, with optional URL params. Also you can disable authentication for public APIs
     mp.get("/resource/uri", { params, authenticate });
 
@@ -197,8 +173,6 @@ You can access any other resource from the MercadoPago API using the generic met
     mp.delete("/resource/uri", { params });
 
 For example, if you want to get the Sites list (no params and no authentication):
-
-::
 
     var result = mp.get("/sites");
 

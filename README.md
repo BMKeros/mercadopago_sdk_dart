@@ -105,7 +105,7 @@ Update an existent Checkout preference
 ## Cancel (only for pending payments)
 
     Future<Map<String, dynamic>> index() async {
-        var result = mp.cancelPayment("PID");
+        var result = await mp.cancelPayment("PID");
 
         // Show result
         return result;

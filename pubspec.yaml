@@ -4,7 +4,7 @@ description: >-
   for use in applications web, server, flutter
 author: Israel Lugo <hostelixisrael@gmail.com>
 homepage: https://github.com/bmkeros/mercadopago_sdk_dart
-version: 1.0.4
+version: 1.0.5
 
 dependencies:
   http: ^0.12.0

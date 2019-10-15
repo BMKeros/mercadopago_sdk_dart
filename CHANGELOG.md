@@ -1,3 +1,7 @@
+## 1.0.5
+
+- Health suggestions sdk.dart
+
 ## 1.0.4
 
 - Health suggestions Future

@@ -73,7 +73,7 @@ class MP {
   /// Search payments according to filters, with pagination
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> searchPayment(Map<String, dynamic> filters,
-      {int offset: 0, int limit: 0}) async {
+      {int offset = 0, int limit = 0}) async {
     final String access_token = await this.getAccessToken();
 
     filters
@@ -151,7 +151,7 @@ class MP {
   Future<Map<String, dynamic>> get(
     uri, {
     Map<String, String> params,
-    bool authenticate: true,
+    bool authenticate = true,
   }) async {
     if (authenticate) {
       String token = await this.getAccessToken();

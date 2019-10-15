@@ -1,3 +1,4 @@
+import 'dart:core';
 import 'rest_client.dart';
 
 class MP {
@@ -14,7 +15,7 @@ class MP {
   /// Get access token
   /// return Future<String>
   Future<String> getAccessToken() async {
-    if (this._access_token != null && !this._access_token.isEmpty) {
+    if (this._access_token != null && this._access_token.isNotEmpty) {
       return this._access_token;
     }
 

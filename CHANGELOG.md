@@ -1,3 +1,8 @@
+## 1.0.3
+
+- Health suggestions
+- Fix markdown readme.md
+
 ## 1.0.2
 
 - Add Generic methods GET, POST, PUT, DELETE

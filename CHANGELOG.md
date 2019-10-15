@@ -1,3 +1,7 @@
+## 1.0.4
+
+- Health suggestions Future
+
 ## 1.0.3
 
 - Health suggestions

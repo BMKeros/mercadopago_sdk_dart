@@ -1,3 +1,16 @@
+## 1.0.5
+
+- Health suggestions sdk.dart
+
+## 1.0.4
+
+- Health suggestions Future
+
+## 1.0.3
+
+- Health suggestions
+- Fix markdown readme.md
+
 ## 1.0.2
 
 - Add Generic methods GET, POST, PUT, DELETE

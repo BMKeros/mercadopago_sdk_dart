@@ -1,3 +1,5 @@
+import 'dart:core';
+import 'dart:async';
 import 'rest_client.dart';
 
 class MP {
@@ -14,7 +16,7 @@ class MP {
   /// Get access token
   /// return Future<String>
   Future<String> getAccessToken() async {
-    if (this._access_token != null && !this._access_token.isEmpty) {
+    if (this._access_token != null && this._access_token.isNotEmpty) {
       return this._access_token;
     }
 
@@ -71,7 +73,7 @@ class MP {
   /// Search payments according to filters, with pagination
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> searchPayment(Map<String, dynamic> filters,
-      {int offset: 0, int limit: 0}) async {
+      {int offset = 0, int limit = 0}) async {
     final String access_token = await this.getAccessToken();
 
     filters
@@ -149,7 +151,7 @@ class MP {
   Future<Map<String, dynamic>> get(
     uri, {
     Map<String, String> params,
-    bool authenticate: true,
+    bool authenticate = true,
   }) async {
     if (authenticate) {
       String token = await this.getAccessToken();

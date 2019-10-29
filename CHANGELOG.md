@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Fix error request GET
+
 ## 1.0.5
 
 - Health suggestions sdk.dart

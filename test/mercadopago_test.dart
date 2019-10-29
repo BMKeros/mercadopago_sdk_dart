@@ -1,5 +1,5 @@
-import "package:test/test.dart";
 import 'package:mercadopago_sdk/mercadopago_sdk.dart';
+import "package:test/test.dart";
 
 void main() {
   String CLIENT_ID = '';
@@ -13,18 +13,25 @@ void main() {
     expect(token, isNot(equals(null)));
   });
 
+  test('Testing get()', () async {
+    var response =
+    await mp.get("/v1/payment_methods", authenticate: true, params: {});
+
+    expect(response['status'], equals(200));
+  });
+
   test('Testing createPreference()', () async {
     var response = await mp.createPreference({
       "items": [
         {
           "title": "sdk-python",
           "quantity": 5,
-          "currency_id": "VEF",
+          "currency_id": "ARS",
           "unit_price": 10.5
         }
       ]
     });
 
-    expect(response['status'], equals(200));
+    expect(response['status'], equals(201));
   });
 }

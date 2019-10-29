@@ -1,3 +1,7 @@
+## 1.1.1
+
+- Health suggestions
+
 ## 1.1.0
 
 - Fix error request GET

@@ -1,8 +1,9 @@
 import 'dart:async';
-import 'dart:core';
 import 'dart:convert';
+import 'dart:core';
 
 import 'package:http/http.dart' as http;
+
 import 'version.dart';
 
 class MPRestClient {
@@ -14,24 +15,28 @@ class MPRestClient {
 
   String get _makeAgent => 'MercadoPago Dart SDK v${SDK_VERSION}';
 
-  String _makeURL(uri, [Map<String, String> params]) {
-    return Uri.https(BASE_URL, uri, params).toString();
+  Map<String, String> get _defaultHeader {
+    return {
+      'User-Agent': this._makeAgent,
+      'Accept': this.MIME_JSON,
+    };
+  }
+
+  String _makeURL(String uri, [Map<String, String> params]) {
+    return Uri.https(this.BASE_URL, uri, params).toString();
   }
 
   Map<String, String> _makeHeaders({
     Map<String, String> extraHeaders,
   }) {
-    return {
-      'User-Agent': this._makeAgent,
-      'Accept': this.MIME_JSON,
-    }..addAll(extraHeaders);
+    if (extraHeaders != null) return this._defaultHeader..addAll(extraHeaders);
+    return this._defaultHeader;
   }
 
-  Future<Map<String, dynamic>> get(
-    uri, [
+  Future<Map<String, dynamic>> get(String uri, [
     Map<String, String> params,
   ]) async {
-    var response = await http.get(this._makeURL(uri, params),
+    final response = await http.get(this._makeURL(uri, params),
         headers: this._makeHeaders());
 
     return {
@@ -40,13 +45,12 @@ class MPRestClient {
     };
   }
 
-  Future<Map<String, dynamic>> post(
-    uri, {
-    Map<String, dynamic> data,
-    Map<String, String> params,
+  Future<Map<String, dynamic>> post(String uri, {
+    Map<String, dynamic> data: const {},
+    Map<String, String> params: const {},
     String contentType,
   }) async {
-    var response = await http.post(this._makeURL(uri, params),
+    final response = await http.post(this._makeURL(uri, params),
         headers: this._makeHeaders(
             extraHeaders: {'Content-type': contentType ?? this.MIME_JSON}),
         body: json.encode(data));
@@ -57,13 +61,12 @@ class MPRestClient {
     };
   }
 
-  Future<Map<String, dynamic>> put(
-    uri, {
-    Map<String, dynamic> data,
-    Map<String, String> params,
+  Future<Map<String, dynamic>> put(String uri, {
+    Map<String, dynamic> data: const {},
+    Map<String, String> params: const {},
     String contentType,
   }) async {
-    var response = await http.put(this._makeURL(uri, params),
+    final response = await http.put(this._makeURL(uri, params),
         headers: this._makeHeaders(
             extraHeaders: {'Content-type': contentType ?? this.MIME_JSON}),
         body: json.encode(data));
@@ -74,11 +77,10 @@ class MPRestClient {
     };
   }
 
-  Future<Map<String, dynamic>> delete(
-    uri, {
-    Map<String, String> params,
+  Future<Map<String, dynamic>> delete(String uri, {
+    Map<String, String> params: const {},
   }) async {
-    var response = await http.delete(this._makeURL(uri, params),
+    final response = await http.delete(this._makeURL(uri, params),
         headers: this._makeHeaders());
 
     return {

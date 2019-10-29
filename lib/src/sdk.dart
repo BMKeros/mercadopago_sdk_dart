@@ -149,7 +149,8 @@ class MP {
 
   /// Generic resource get
   /// Future<Map<String, dynamic>>
-  Future<Map<String, dynamic>> get(String uri, {
+  Future<Map<String, dynamic>> get(
+    String uri, {
     Map<String, String> params,
     bool authenticate = true,
   }) async {
@@ -162,7 +163,8 @@ class MP {
 
   /// Generic resource post
   /// Future<Map<String, dynamic>>
-  Future<Map<String, dynamic>> post(String uri, {
+  Future<Map<String, dynamic>> post(
+    String uri, {
     Map<String, dynamic> data,
     Map<String, String> params,
   }) async {
@@ -173,7 +175,8 @@ class MP {
 
   /// Generic resource put
   /// Future<Map<String, dynamic>>
-  Future<Map<String, dynamic>> put(String uri, {
+  Future<Map<String, dynamic>> put(
+    String uri, {
     Map<String, dynamic> data,
     Map<String, String> params,
   }) async {
@@ -184,7 +187,8 @@ class MP {
 
   /// Generic resource delete
   /// Future<Map<String, dynamic>>
-  Future<Map<String, dynamic>> delete(String uri, {
+  Future<Map<String, dynamic>> delete(
+    String uri, {
     Map<String, String> params,
   }) async {
     String token = await this.getAccessToken();

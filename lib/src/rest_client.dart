@@ -33,7 +33,8 @@ class MPRestClient {
     return this._defaultHeader;
   }
 
-  Future<Map<String, dynamic>> get(String uri, [
+  Future<Map<String, dynamic>> get(
+    String uri, [
     Map<String, String> params,
   ]) async {
     final response = await http.get(this._makeURL(uri, params),
@@ -45,9 +46,10 @@ class MPRestClient {
     };
   }
 
-  Future<Map<String, dynamic>> post(String uri, {
-    Map<String, dynamic> data: const {},
-    Map<String, String> params: const {},
+  Future<Map<String, dynamic>> post(
+    String uri, {
+    Map<String, dynamic> data = const {},
+    Map<String, String> params = const {},
     String contentType,
   }) async {
     final response = await http.post(this._makeURL(uri, params),
@@ -61,9 +63,10 @@ class MPRestClient {
     };
   }
 
-  Future<Map<String, dynamic>> put(String uri, {
-    Map<String, dynamic> data: const {},
-    Map<String, String> params: const {},
+  Future<Map<String, dynamic>> put(
+    String uri, {
+    Map<String, dynamic> data = const {},
+    Map<String, String> params = const {},
     String contentType,
   }) async {
     final response = await http.put(this._makeURL(uri, params),
@@ -77,8 +80,9 @@ class MPRestClient {
     };
   }
 
-  Future<Map<String, dynamic>> delete(String uri, {
-    Map<String, String> params: const {},
+  Future<Map<String, dynamic>> delete(
+    String uri, {
+    Map<String, String> params = const {},
   }) async {
     final response = await http.delete(this._makeURL(uri, params),
         headers: this._makeHeaders());

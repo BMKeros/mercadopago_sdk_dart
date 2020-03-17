@@ -1,3 +1,6 @@
+## 1.1.2
+- Fix params
+
 ## 1.1.1
 
 - Health suggestions

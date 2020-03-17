@@ -2,9 +2,8 @@ name: mercadopago_sdk
 description: >-
   Mercadopago SDK module for Payments integration
   for use in applications web, server, flutter
-author: Israel Lugo <hostelixisrael@gmail.com>
 homepage: https://github.com/bmkeros/mercadopago_sdk_dart
-version: 1.1.1
+version: 1.1.2
 
 dependencies:
   http: ^0.12.0

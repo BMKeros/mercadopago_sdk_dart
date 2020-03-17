@@ -151,7 +151,7 @@ class MP {
   /// Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> get(
     String uri, {
-    Map<String, String> params,
+    Map<String, String> params = const {},
     bool authenticate = true,
   }) async {
     if (authenticate) {
@@ -166,7 +166,7 @@ class MP {
   Future<Map<String, dynamic>> post(
     String uri, {
     Map<String, dynamic> data,
-    Map<String, String> params,
+    Map<String, String> params = const {},
   }) async {
     String token = await this.getAccessToken();
     params..addAll({'access_token': token});
@@ -178,7 +178,7 @@ class MP {
   Future<Map<String, dynamic>> put(
     String uri, {
     Map<String, dynamic> data,
-    Map<String, String> params,
+    Map<String, String> params = const {},
   }) async {
     String token = await this.getAccessToken();
     params..addAll({'access_token': token});
@@ -189,7 +189,7 @@ class MP {
   /// Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> delete(
     String uri, {
-    Map<String, String> params,
+    Map<String, String> params = const {},
   }) async {
     String token = await this.getAccessToken();
     params..addAll({'access_token': token});

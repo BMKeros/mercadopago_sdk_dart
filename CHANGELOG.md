@@ -1,3 +1,6 @@
+## 1.1.3
+- Fix params default in http actions
+
 ## 1.1.2
 - Fix params
 

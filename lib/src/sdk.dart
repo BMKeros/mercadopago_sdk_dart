@@ -151,14 +151,16 @@ class MP {
   /// Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> get(
     String uri, {
-    Map<String, String> params = const {},
+    Map<String, String> params,
     bool authenticate = true,
   }) async {
+    Map<String, String> extras = {};
     if (authenticate) {
       String token = await this.getAccessToken();
-      params..addAll({'access_token': token});
+      extras..addAll({'access_token': token});
     }
-    return this._restClient.get(uri, params);
+    if (params != null) extras..addAll(params);
+    return this._restClient.get(uri, extras);
   }
 
   /// Generic resource post
@@ -166,11 +168,12 @@ class MP {
   Future<Map<String, dynamic>> post(
     String uri, {
     Map<String, dynamic> data,
-    Map<String, String> params = const {},
+    Map<String, String> params,
   }) async {
     String token = await this.getAccessToken();
-    params..addAll({'access_token': token});
-    return this._restClient.post(uri, data: data, params: params);
+    Map<String, String> extras = {'access_token': token};
+    if (params != null) extras..addAll(params);
+    return this._restClient.post(uri, data: data, params: extras);
   }
 
   /// Generic resource put
@@ -178,21 +181,23 @@ class MP {
   Future<Map<String, dynamic>> put(
     String uri, {
     Map<String, dynamic> data,
-    Map<String, String> params = const {},
+    Map<String, String> params,
   }) async {
     String token = await this.getAccessToken();
-    params..addAll({'access_token': token});
-    return this._restClient.put(uri, data: data, params: params);
+    Map<String, String> extras = {'access_token': token};
+    if (params != null) extras..addAll(params);
+    return this._restClient.put(uri, data: data, params: extras);
   }
 
   /// Generic resource delete
   /// Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> delete(
     String uri, {
-    Map<String, String> params = const {},
+    Map<String, String> params,
   }) async {
     String token = await this.getAccessToken();
-    params..addAll({'access_token': token});
-    return this._restClient.delete(uri, params: params);
+    Map<String, String> extras = {'access_token': token};
+    if (params != null) extras..addAll(params);
+    return this._restClient.delete(uri, params: extras);
   }
 }

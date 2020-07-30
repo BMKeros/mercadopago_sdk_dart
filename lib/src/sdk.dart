@@ -94,6 +94,14 @@ class MP {
         params: {'access_token': access_token}, data: preference);
   }
 
+  /// Create a checkout preference (With Access Token)
+  /// return Future<Map<String, dynamic>>
+  Future<Map<String, dynamic>> createPreferenceAccessToken(
+      Map<String, dynamic> preference, String access_token) async {
+    return this._restClient.post('/checkout/preferences',
+        params: {'access_token': access_token}, data: preference);
+  }
+
   /// Update a checkout preference
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> updatePreference(

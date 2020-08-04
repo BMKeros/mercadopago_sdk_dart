@@ -1,3 +1,6 @@
+## 1.2.0
+- Add new factory and methods
+
 ## 1.1.3
 - Fix params default in http actions
 

@@ -4,14 +4,24 @@ import 'dart:core';
 import 'rest_client.dart';
 
 class MP {
-  final String _client_id;
-  final String _client_secret;
+  String _client_id;
+  String _client_secret;
 
   String _access_token;
   MPRestClient _restClient;
 
   MP(this._client_id, this._client_secret) {
     _restClient = MPRestClient();
+  }
+
+  MP.fromAccessToken(this._access_token) {
+    _restClient = MPRestClient();
+  }
+
+  /// Set access token
+  /// return void
+  void setAccessToken(String token) {
+    this._access_token = token;
   }
 
   /// Get access token

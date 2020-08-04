@@ -20,7 +20,7 @@ class MP {
 
   /// Set access token
   /// return void
-  void setAccessToken(String token) async {
+  void setAccessToken(String token) {
     this._access_token = token;
   }
 

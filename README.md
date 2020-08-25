@@ -26,6 +26,12 @@ Configure your credentials
 
     var mp = MP("CLIENT_ID", "CLIENT_SECRET");
 
+---
+
+Instance with only access token
+
+    var mp = MP.fromAccessToken("TOKEN");
+
 ## Preferences
 
 Get an existent Checkout preference

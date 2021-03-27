@@ -3,11 +3,11 @@ description: >-
   Mercadopago SDK module for Payments integration
   for use in applications web, server, flutter
 homepage: https://github.com/bmkeros/mercadopago_sdk_dart
-version: 1.2.0
+version: 1.3.0
 
 dependencies:
-  http: ^0.12.0
-  test: ^1.5.1+1
+  http: ^0.13.1
+  test: ^1.16.8
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"

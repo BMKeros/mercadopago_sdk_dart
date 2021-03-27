@@ -4,19 +4,15 @@ import 'dart:core';
 import 'rest_client.dart';
 
 class MP {
-  String _client_id;
-  String _client_secret;
+  String? _client_id;
+  String? _client_secret;
 
-  String _access_token;
-  MPRestClient _restClient;
+  String? _access_token;
+  MPRestClient _restClient = MPRestClient();
 
-  MP(this._client_id, this._client_secret) {
-    _restClient = MPRestClient();
-  }
+  MP(this._client_id, this._client_secret);
 
-  MP.fromAccessToken(this._access_token) {
-    _restClient = MPRestClient();
-  }
+  MP.fromAccessToken(this._access_token);
 
   /// Set access token
   /// return void
@@ -26,12 +22,12 @@ class MP {
 
   /// Get access token
   /// return Future<String>
-  Future<String> getAccessToken() async {
-    if (this._access_token != null && this._access_token.isNotEmpty) {
+  Future<String?> getAccessToken() async {
+    if (this._access_token != null) {
       return this._access_token;
     }
 
-    Map<String, String> data_app_client = {
+    Map<String, String?> data_app_client = {
       'client_id': this._client_id,
       'client_secret': this._client_secret,
       'grant_type': 'client_credentials',
@@ -47,51 +43,49 @@ class MP {
     return null;
   }
 
+  Future<Map<String, String>?> _getAccessTokenParam() async {
+    String? access_token = await this.getAccessToken();
+    return access_token != null ? {'access_token': access_token} : null;
+  }
+
   /// Get information for specific payment
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> getPayment(String id) async {
-    final String access_token = await this.getAccessToken();
-    return this
-        ._restClient
-        .get('/v1/payments/${id}', {'access_token': access_token});
+    Map<String, String>? params = await _getAccessTokenParam();
+    return this._restClient.get('/v1/payments/${id}', params);
   }
 
   /// Get information for specific authorized payment
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> getAuthorizedPayment(String id) async {
-    final String access_token = await this.getAccessToken();
-    return this
-        ._restClient
-        .get('/authorized_payments/${id}', {'access_token': access_token});
+    Map<String, String>? params = await _getAccessTokenParam();
+    return this._restClient.get('/authorized_payments/${id}', params);
   }
 
   /// Refund accredited payment
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> refundPayment(String id) async {
-    final String access_token = await this.getAccessToken();
-    return this._restClient.post('/v1/payments/${id}/refunds',
-        params: {'access_token': access_token}, data: {});
+    Map<String, String>? params = await _getAccessTokenParam();
+    return this
+        ._restClient
+        .post('/v1/payments/${id}/refunds', params: params, data: {});
   }
 
   /// Cancel pending payment
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> cancelPayment(String id) async {
-    final String access_token = await this.getAccessToken();
+    Map<String, String>? params = await _getAccessTokenParam();
     return this._restClient.put('/v1/payments/${id}',
-        params: {'access_token': access_token}, data: {"status": "cancelled"});
+        params: params, data: {"status": "cancelled"});
   }
 
   /// Search payments according to filters, with pagination
   /// return Future<Map<String, dynamic>>
-  Future<Map<String, dynamic>> searchPayment(Map<String, dynamic> filters,
+  Future<Map<String, dynamic>> searchPayment(Map<String, String> filters,
       {int offset = 0, int limit = 0}) async {
-    final String access_token = await this.getAccessToken();
-
-    filters
-      ..addAll({'access_token': access_token})
-      ..addAll({'offset': offset})
-      ..addAll({'limit': limit});
-
+    Map<String, String>? params = await _getAccessTokenParam();
+    if (params != null) filters.addAll(params);
+    filters..addAll({'offset': '$offset'})..addAll({'limit': '$limit'});
     return this._restClient.get('/v1/payments/search', filters);
   }
 
@@ -99,75 +93,75 @@ class MP {
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> createPreference(
       Map<String, dynamic> preference) async {
-    final String access_token = await this.getAccessToken();
-    return this._restClient.post('/checkout/preferences',
-        params: {'access_token': access_token}, data: preference);
+    Map<String, String>? params = await _getAccessTokenParam();
+    return this
+        ._restClient
+        .post('/checkout/preferences', params: params, data: preference);
   }
 
   /// Update a checkout preference
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> updatePreference(
       String id, Map<String, dynamic> preference) async {
-    final String access_token = await this.getAccessToken();
-    return this._restClient.put('/checkout/preferences/${id}',
-        params: {'access_token': access_token}, data: preference);
+    Map<String, String>? params = await _getAccessTokenParam();
+    return this
+        ._restClient
+        .put('/checkout/preferences/${id}', params: params, data: preference);
   }
 
   /// Get a checkout preference
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> getPreference(String id) async {
-    final String access_token = await this.getAccessToken();
-    return this
-        ._restClient
-        .get('/checkout/preferences/${id}', {'access_token': access_token});
+    Map<String, String>? params = await _getAccessTokenParam();
+    return this._restClient.get('/checkout/preferences/${id}', params);
   }
 
   /// Create a preapproval payment
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> createPreapprovalPayment(
       Map<String, dynamic> payment) async {
-    final String access_token = await this.getAccessToken();
-    return this._restClient.post('/preapproval/',
-        params: {'access_token': access_token}, data: payment);
+    Map<String, String>? params = await _getAccessTokenParam();
+    return this
+        ._restClient
+        .post('/preapproval/', params: params, data: payment);
   }
 
   /// Get a preapproval payment
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> getPreapprovalPayment(String id) async {
-    final String access_token = await this.getAccessToken();
-    return this
-        ._restClient
-        .get('/preapproval/${id}', {'access_token': access_token});
+    Map<String, String>? params = await _getAccessTokenParam();
+    return this._restClient.get('/preapproval/${id}', params);
   }
 
   /// Update a preapproval payment
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> updatePreapprovalPayment(
       String id, Map<String, dynamic> payment) async {
-    final String access_token = await this.getAccessToken();
-    return this._restClient.put('/preapproval/${id}',
-        params: {'access_token': access_token}, data: payment);
+    Map<String, String>? params = await _getAccessTokenParam();
+    return this
+        ._restClient
+        .put('/preapproval/${id}', params: params, data: payment);
   }
 
   /// Cancel preapproval payment
   /// return Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> cancelPreapprovalPayment(String id) async {
-    final String access_token = await this.getAccessToken();
+    Map<String, String>? params = await _getAccessTokenParam();
     return this._restClient.put('/preapproval/${id}',
-        params: {'access_token': access_token}, data: {"status": "cancelled"});
+        params: params, data: {"status": "cancelled"});
   }
 
   /// Generic resource get
   /// Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> get(
     String uri, {
-    Map<String, String> params,
+    Map<String, String>? params,
     bool authenticate = true,
   }) async {
     Map<String, String> extras = {};
     if (authenticate) {
-      String token = await this.getAccessToken();
-      extras..addAll({'access_token': token});
+      Map<String, String>? pToken = await _getAccessTokenParam();
+      if (pToken != null) extras..addAll(pToken);
     }
     if (params != null) extras..addAll(params);
     return this._restClient.get(uri, extras);
@@ -177,11 +171,12 @@ class MP {
   /// Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> post(
     String uri, {
-    Map<String, dynamic> data,
-    Map<String, String> params,
-  }) async {
-    String token = await this.getAccessToken();
-    Map<String, String> extras = {'access_token': token};
+        Map<String, dynamic> data = const {},
+        Map<String, String>? params,
+      }) async {
+    Map<String, String> extras = {};
+    Map<String, String>? pToken = await _getAccessTokenParam();
+    if (pToken != null) extras..addAll(pToken);
     if (params != null) extras..addAll(params);
     return this._restClient.post(uri, data: data, params: extras);
   }
@@ -190,11 +185,12 @@ class MP {
   /// Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> put(
     String uri, {
-    Map<String, dynamic> data,
-    Map<String, String> params,
-  }) async {
-    String token = await this.getAccessToken();
-    Map<String, String> extras = {'access_token': token};
+        Map<String, dynamic> data = const {},
+        Map<String, String>? params,
+      }) async {
+    Map<String, String> extras = {};
+    Map<String, String>? pToken = await _getAccessTokenParam();
+    if (pToken != null) extras..addAll(pToken);
     if (params != null) extras..addAll(params);
     return this._restClient.put(uri, data: data, params: extras);
   }
@@ -203,10 +199,11 @@ class MP {
   /// Future<Map<String, dynamic>>
   Future<Map<String, dynamic>> delete(
     String uri, {
-    Map<String, String> params,
-  }) async {
-    String token = await this.getAccessToken();
-    Map<String, String> extras = {'access_token': token};
+        Map<String, String>? params,
+      }) async {
+    Map<String, String> extras = {};
+    Map<String, String>? pToken = await _getAccessTokenParam();
+    if (pToken != null) extras..addAll(pToken);
     if (params != null) extras..addAll(params);
     return this._restClient.delete(uri, params: extras);
   }

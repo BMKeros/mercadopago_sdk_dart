@@ -1,3 +1,7 @@
+## 1.3.0
+- upgrade dependencies
+- support null safety
+
 ## 1.2.0
 - Add new factory and methods
 
